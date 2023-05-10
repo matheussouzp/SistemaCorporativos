@@ -1,0 +1,32 @@
+{
+  "development": {
+    "username": "sa",
+    "password": "master",
+    "database": "TabelaNodeMatheus",
+    "host": "192.168.0.9",
+    "dialect": "mssql",
+    "dialectOptions": {
+      "encrypt": true
+    }
+  },
+  "test": {
+    "username": "sa",
+    "password": "master",
+    "database": "TabelaNodeMatheus",
+    "host": "192.168.0.9",
+    "dialect": "mssql",
+    "dialectOptions": {
+      "encrypt": true
+    }
+  },
+  "production": {
+    "username": "sa",
+    "password": "master",
+    "database": "TabelaNodeMatheus",
+    "host": "192.168.0.9",
+    "dialect": "mssql",
+    "dialectOptions": {
+      "encrypt": true
+    }
+  }
+}
