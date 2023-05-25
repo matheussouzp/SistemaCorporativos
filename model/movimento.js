@@ -18,6 +18,10 @@ const Movimento = database.define('movimento', {
     data: {
         type: Sequelize.DATE,
         allowNull: false
+    },
+    valor: {
+        type: Sequelize.FLOAT,
+        allowNull: false
     }
 });
 
