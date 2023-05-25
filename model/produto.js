@@ -1,13 +1,13 @@
-
-
 const Sequelize = require('sequelize');
 const database = require('../db.js');
+const ItemMovimento = require('./itemmovimento.js');
 
 const Produto = database.define('produto', {
     id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     nome: {
         type: Sequelize.STRING, 
@@ -16,9 +16,13 @@ const Produto = database.define('produto', {
     cor: {
         type: Sequelize.STRING, 
         allowNull: false
+    },
+    valorunitario: {
+        type: Sequelize.FLOAT, 
+        allowNull: false
     }
-    
-    
 });
+
+Produto.hasMany(ItemMovimento);
 
 module.exports = Produto;

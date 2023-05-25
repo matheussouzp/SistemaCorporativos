@@ -2,7 +2,8 @@ const Sequelize = require('sequelize');
 const database = require('../db.js');
 const Movimento = require('./movimento.js');
 
-const Documento = database.define('documento', {
+
+const Titulo = database.define('titulo', {
     id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -16,8 +17,24 @@ const Documento = database.define('documento', {
     data: {
         type: Sequelize.DATE,
         allowNull: false
+    },
+    valororiginal: {
+        type: Sequelize.FLOAT,
+        allowNull: false
+    },
+    situacao: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    valoraberto: {
+        type: Sequelize.FLOAT,
+        allowNull: false
     }
 });
-Documento.hasMany(Movimento);
 
-module.exports = Documento;
+
+
+Titulo.hasMany(Movimento);
+
+
+module.exports = Titulo;

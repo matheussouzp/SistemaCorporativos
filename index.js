@@ -5,20 +5,21 @@ const app = express();
 require('dotenv').config()
 const moment = require('moment');
 const auth = require('./auth.js');
-const Cliente = require('./model/cliente.js');
-const Movimento = require('./model/movimento.js');
-const Documento = require('./model/documento.js');
+
 app.use(express.json());
 app.use(bodyParser.json());
 
 const secret = 'mysecretkey';
 (async () =>{
+  const Movimento = require('./model/movimento.js');
+  const ItemMovimento = require('./model/itemmovimento.js');
+  const Titulo = require('./model/titulo.js');
   const database = require('./db.js');
   const Cliente = require('./model/cliente.js');
   const Deposito = require('./model/deposito.js');
   const Produto = require('./model/produto.js');
   const Documento = require('./model/documento.js');
-  //await database.sync();
+
   await database.sync({alter:true});
 
   //CLIENTE
@@ -53,22 +54,39 @@ const secret = 'mysecretkey';
         nome:'PARANÁ 01',
         filial:'PR'
     }
-    
-  );
-  */
-  await Produto.create(
+    await Produto.create(
     {
         id:5,
-        nome:'Parafuso S4',
-        cor:'prata'
+        nome:'Parafuso S6',
+        cor:'prata',
+        valorunitario: 3.5
     }
-    
   );
+  
+  await Cliente.create(
+    {
+      cpf:'123456789',
+      nome:'Beto Arte e cor',
+      email:'Beto@hotmail.com'
+    }
+  );*/
+  const clientes = await Cliente.findAll();
+  console.log(clientes);
+    
+    /*await Movimento.create(
+      {
+          id:5,
+          tipo:'Parafuso S4',
+          data:'2023-12-12',
+          documento_id:3
+      }*/
+  
+  
 })();
 
 
 
-console.log(Documento);
+
 
 app.post('/api/login', (req, res) => {
   // Aqui você pode fazer a autenticação do usuário e validar as credenciais
