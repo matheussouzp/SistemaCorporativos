@@ -8,22 +8,35 @@ require('dotenv').config()
 const auth = require('./auth.js');
 
 var usuarioRouter = require('./routes/usuarioRouter.js');
+var produtoRouter = require('./routes/produtoRouter.js');
+var clienteRouter = require('./routes/clienteRouter.js');
+var depositoRouter = require('./routes/depositoRouter.js');
+var itemmovimentoRouter = require('./routes/itemMovimentoRouter.js');
+var movimentoRouter = require('./routes/movimentoRouter.js');
+
 
 app.use(express.json());
 app.use(bodyParser.json());
+
+
 app.use('/usuario', usuarioRouter);
+app.use('/produto', produtoRouter);
+app.use('/cliente', clienteRouter);
+app.use('/deposito', depositoRouter);
+app.use('/itemmovimento', itemmovimentoRouter);
+app.use('/movimento', movimentoRouter);
 
 
 const secret = 'mysecretkey';
 (async () =>{
-  const Movimento = require('./model/movimento.js');
-  const ItemMovimento = require('./model/itemmovimento.js');
-  const Titulo = require('./model/titulo.js');
+  const Movimento = require('./models/movimento.js');
+  const ItemMovimento = require('./models/itemmovimento.js');
+  const Titulo = require('./models/titulo.js');
   const database = require('./db.js');
-  const Cliente = require('./model/cliente.js');
-  const Deposito = require('./model/deposito.js');
-  const Produto = require('./model/produto.js');
-  const Documento = require('./model/documento.js');
+  const Cliente = require('./models/cliente.js');
+  const Deposito = require('./models/deposito.js');
+  const Produto = require('./models/produto.js');
+  const Documento = require('./models/documento.js');
 
   await database.sync({alter:true});
 
@@ -85,8 +98,19 @@ const secret = 'mysecretkey';
           data:'2023-12-12',
           documento_id:3
       }*/
-  
-  
+      
+      await Movimento.create(
+        {
+          tipo:'PAGAR',
+          data:new Date,
+          valor: 0,
+          tituloId:1,
+          clienteId:1,
+          depositoId:1,
+          documentoId:1
+        }
+      );
+      
 })();
 
 app.post('/login', (req, res) => {

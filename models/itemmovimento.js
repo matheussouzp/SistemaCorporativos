@@ -11,7 +11,12 @@ const ItemMovimento = database.define('itemmovimento', {
     quantidade: {
         type: Sequelize.INTEGER,
         allowNull: false
+    },
+    valorunitario: {
+        type: Sequelize.FLOAT, 
+        allowNull: false
     }
+    
 });
 
 

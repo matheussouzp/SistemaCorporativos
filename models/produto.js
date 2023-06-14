@@ -16,10 +16,6 @@ const Produto = database.define('produto', {
     cor: {
         type: Sequelize.STRING, 
         allowNull: false
-    },
-    valorunitario: {
-        type: Sequelize.FLOAT, 
-        allowNull: false
     }
 });
 
