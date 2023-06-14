@@ -31,7 +31,7 @@ class UsuarioController {
         }
     }
     
-    async autenticar(req, res) {
+    async autenticar(req, res) {    
         const { nome, password } = req.body;
         
         try {
